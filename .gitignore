@@ -24,3 +24,4 @@ Thumbs.db
 
 # Project specific
 trade_journal.json
+.venv/
