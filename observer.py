@@ -79,12 +79,12 @@ def analyze(journal) -> dict:
     if wr_dev < -30 and len(sells) >= 4:
         alerts.append({
             'level': '🔴 HIGH',
-            'msg': f'胜率{wrl*100:.0f}% 远低于基准{baseline_wr*100:.0f}%（偏差{wr_dev:.0f}%），策略可能失效',
+            'msg': f'胜率{wr*100:.0f}% 远低于基准{BASELINE["win_rate"]*100:.0f}%（偏差{wr_dev:.0f}%），策略可能失效',
         })
     elif wr_dev < -15 and len(sells) >= 4:
         alerts.append({
             'level': '🟡 MEDIUM',
-            'msg': f'胜率{wrl*100:.0f}% 低于基准{baseline_wr*100:.0f}%，持续观察',
+            'msg': f'胜率{wr*100:.0f}% 低于基准{BASELINE["win_rate"]*100:.0f}%，持续观察',
         })
     
     # Alert 2: Single loss exceeds max baseline
