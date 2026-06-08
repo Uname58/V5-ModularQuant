@@ -13,7 +13,7 @@ sys.path.insert(0, PROJECT_DIR)
 
 from engine.signal_engine import check_signal
 
-SELECTED = ["FILUSDT", "AVAXUSDT", "SOLUSDT", "NEARUSDT", "INJUSDT"]
+SELECTED = ["FILUSDT", "AVAXUSDT", "SOLUSDT", "INJUSDT", "NEARUSDT", "BTCUSDT", "ETHUSDT"]
 CAPITAL = 8000
 MAX_PER_TRADE = 4000
 MAX_POSITIONS = 2
@@ -23,8 +23,10 @@ BACKTEST = {
     "FILUSDT":   (122.8, 92, -30.7),
     "AVAXUSDT":  (152.9, 91, -38.8),
     "SOLUSDT":   (130.2, 86, -38.1),
-    "NEARUSDT":  (112.2, 80, -43.6),
     "INJUSDT":   (110.5, 80, -37.0),
+    "NEARUSDT":  (112.2, 80, -43.6),
+    "BTCUSDT":   (72.5,  87, -33.5),
+    "ETHUSDT":   (39.2,  75, -41.5),
 }
 
 # 风险调整排名：Return ÷ |MaxDD|
@@ -50,7 +52,7 @@ def run():
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
     lines = []
-    lines.append(f"🎯 V5 精选5 — {now}")
+    lines.append(f"🎯 V5 精选7 — {now}")
     lines.append(f"规则: 单笔≤¥{MAX_PER_TRADE:,} | 持仓≤{MAX_POSITIONS}个 | 优先: 风险调整收益")
     lines.append("")
 
