@@ -19,33 +19,42 @@ from strategies import MoonReversalStrategy
 from config import BENCHMARKS
 
 
-def cmd_signal():
-    """Check current signal and market status."""
-    result = check_signal()
-    print(f"\n{'='*55}")
-    print("V5 Moon Reversal — 当前状态")
-    print(f"{'='*55}")
-    print(f"最新周线: {result['last_week']} | 价格: ${result['last_price']:,.0f}")
-    print(f"上月: {result['prev_month']} {'🔴熊月' if result['prev_month_red'] else '🟢牛月'} ({result['prev_month_return']:+.1f}%)")
-    print(f"本周: {'🔴红周' if result['current_week_red'] else '🟢绿周'}")
+def _print_signal_block(result: dict):
+    """Print a single symbol's signal block."""
+    sym = result["symbol"].replace("USDT", "")
+    print(f"  ┌─ {sym} ─────────────────────────────────────┐")
+    print(f"  │ 价格: ${result['last_price']:>10,.0f}                    │")
+    print(f"  │ 上月: {result['prev_month']} {'🔴熊' if result['prev_month_red'] else '🟢牛'} ({result['prev_month_return']:+.1f}%){'':>3}│")
+    print(f"  │ 本周: {'🔴红' if result['current_week_red'] else '🟢绿'}                           │")
 
     if result["in_position"]:
-        print(f"\n📈 模拟持仓中 | 入场价: ${result['entry_price']:,.0f}")
+        print(f"  │ 📈 持仓中 @ ${result['entry_price']:,.0f}                  │")
         if result["trail_active"]:
-            print(f"⚡ 追踪止损已激活 | 止损: ${result['trail_stop_price']:,.0f}")
+            print(f"  │ ⚡ 追踪止损: ${result['trail_stop_price']:,.0f}                  │")
     elif result["entry_gate_open"]:
-        print(f"\n✅ 入场门开！")
         if not result["current_week_red"]:
-            print(f"🔥 本周绿周 → 模拟买入信号")
+            print(f"  │ 🔥 入场门开 + 绿周 → 买入信号        │")
         else:
-            print(f"⏳ 等待本月首根绿周")
+            print(f"  │ ✅ 入场门开 | ⏳ 等待首根绿周          │")
     else:
-        print(f"\n⏸️ 无入场信号")
+        print(f"  │ ⏸️  无入场信号                          │")
 
-    print(f"\n{'='*55}")
     if result["last_signal"]:
         sig = result["last_signal"]
-        print(f"最近信号: {sig['action']} @ ${sig['price']:,.0f} ({sig['date']}) — {sig['reason']}")
+        print(f"  │ 最近: {sig['action']} @ ${sig['price']:,.0f} ({sig['date']})          │")
+    print(f"  └{'─'*44}┘")
+
+
+def cmd_signal():
+    """Check current signal and market status."""
+    print(f"\n{'='*50}")
+    print("V5 Moon Reversal — 当前状态")
+    print(f"{'='*50}")
+
+    for sym in ["BTCUSDT", "ETHUSDT", "SOLUSDT"]:
+        result = check_signal(symbol=sym)
+        _print_signal_block(result)
+        print()
 
 
 def cmd_backtest(args):

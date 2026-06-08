@@ -6,7 +6,7 @@ All tunable parameters live here. No magic numbers in strategy code.
 # ═══════════════════════════════════════════════════════════
 # DATA
 # ═══════════════════════════════════════════════════════════
-SYMBOLS = ["BTCUSDT"]
+SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"]
 VALIDATION_SYMBOLS = ["ETHUSDT", "SOLUSDT"]
 TIMEFRAMES = {
     "monthly": "1M",

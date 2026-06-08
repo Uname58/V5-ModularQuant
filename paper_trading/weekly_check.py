@@ -17,54 +17,64 @@ from analytics.regime import build_regime_labels
 from paper_trading.journal import PaperJournal, BASELINE
 
 
+TRACKED_SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT"]
+
+
 def run():
     print("V5 Paper Trading — Weekly Check")
     print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M"))
     print()
 
-    # 1. Fetch and check signal
-    signal = check_signal()
-    months, weeks, _ = fetch_data()
-
-    # 2. Classify current regime
-    monthly_closes = [m["close"] for m in months]
-    labels = build_regime_labels(monthly_closes)
-    current_regime = labels[-1] if labels else "unknown"
-
-    btc_price = signal["last_price"]
-
-    # 3. Log to journal
     journal = PaperJournal()
-    journal.record_signal_check(signal, current_regime, btc_price)
+    reports = []
 
-    # 4. Update benchmark (track from first run)
-    journal.update_benchmark(btc_price, btc_price)
+    for sym in TRACKED_SYMBOLS:
+        sym_label = sym.replace("USDT", "")
 
-    # 5. Print status
-    print(f"BTC: ${btc_price:,.0f} | Regime: {current_regime}")
-    print(f"上月: {signal['prev_month']} {'🔴熊' if signal['prev_month_red'] else '🟢牛'} ({signal['prev_month_return']:+.1f}%)")
-    print(f"本周: {'🔴红' if signal['current_week_red'] else '🟢绿'}")
-    print(f"入场门: {'✅ OPEN' if signal['entry_gate_open'] else '⏸️ closed'}")
+        # 1. Fetch and check signal
+        signal = check_signal(symbol=sym)
+        months, weeks, _ = fetch_data(symbol=sym)
 
-    if signal["in_position"]:
-        pos = journal.data["open_position"]
-        if pos:
-            pnl = (btc_price - pos["entry_price"]) / pos["entry_price"] * 100
-            print(f"持仓: ${pos['entry_price']:,.0f} → ${btc_price:,.0f} ({pnl:+.1f}%)")
-            if pos.get("trail_active"):
-                trail = pos["highest"] * (1 - pos["trail_distance"] / 100)
-                print(f"追踪止损: ${trail:,.0f} (high: ${pos['highest']:,.0f})")
+        # 2. Classify current regime
+        monthly_closes = [m["close"] for m in months]
+        labels = build_regime_labels(monthly_closes)
+        current_regime = labels[-1] if labels else "unknown"
 
-    if signal["last_signal"]:
-        sig = signal["last_signal"]
-        print(f"最近信号: {sig['action']} @ ${sig['price']:,.0f} ({sig['date']})")
+        price = signal["last_price"]
+
+        # 3. Log to journal
+        journal.record_signal_check(signal, current_regime, price)
+
+        # 4. Update benchmark
+        journal.update_benchmark(price, price)
+
+        # 5. Print status
+        print(f"── {sym_label} ──")
+        print(f"${price:,.0f} | Regime: {current_regime}")
+        print(f"上月: {signal['prev_month']} {'🔴熊' if signal['prev_month_red'] else '🟢牛'} ({signal['prev_month_return']:+.1f}%)")
+        print(f"本周: {'🔴红' if signal['current_week_red'] else '🟢绿'}")
+        print(f"入场门: {'✅ OPEN' if signal['entry_gate_open'] else '⏸️ closed'}")
+
+        if signal["in_position"]:
+            pos = journal.data.get("open_position")
+            if pos:
+                pnl = (price - pos["entry_price"]) / pos["entry_price"] * 100
+                print(f"持仓: ${pos['entry_price']:,.0f} → ${price:,.0f} ({pnl:+.1f}%)")
+                if pos.get("trail_active"):
+                    trail = pos["highest"] * (1 - pos["trail_distance"] / 100)
+                    print(f"追踪止损: ${trail:,.0f} (high: ${pos['highest']:,.0f})")
+
+        if signal["last_signal"]:
+            sig = signal["last_signal"]
+            print(f"最近信号: {sig['action']} @ ${sig['price']:,.0f} ({sig['date']})")
+        print()
 
     # 6. Full status
     report = journal.status_report()
-    print()
     print(report)
+    reports.append(report)
 
-    return report
+    return "\n".join(reports)
 
 
 if __name__ == "__main__":
