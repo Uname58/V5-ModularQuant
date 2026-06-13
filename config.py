@@ -1,6 +1,6 @@
 """
-V5 MoonReversal — Centralized Configuration
-All tunable parameters live here. No magic numbers in strategy code.
+V5 Modular Quant Lab — Strategy-Agnostic Trading Platform
+Pluggable strategies, templated backtesting, live execution.
 """
 
 # ═══════════════════════════════════════════════════════════
