@@ -4,7 +4,7 @@
 > *「等熊市耗尽，再顺势而上。」*
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://python.org)
-[![Status](https://img.shields.io/badge/status-paper%20trading-yellow)]()
+[![Status](https://img.shields.io/badge/status-live%20trading-brightgreen)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
 [![Assets](https://img.shields.io/badge/assets-20%20coins-blue)]()
 
@@ -238,11 +238,13 @@ python3 paper_trading/select5.py        # 精选5 + 仓位规则
 
 | | EN | CN |
 |---|---|---|
-| Phase | ⚗️ Paper trading | ⚗️ 纸交验证中 |
-| Capital | ❌ No real funds | ❌ 无实盘资金 |
-| Assets | BTC/ETH/SOL + 17 alts | 20币监控 |
-| Signal | 📡 Weekly via Telegram | 📡 每周 Telegram 推送 |
-| Goal | Deploy when ready | 打磨到能上线为止 |
+| Phase | 🟢 **Live trading** | 🟢 **实盘运行中** |
+| Capital | $259 USDT（自有资金） | $259 USDT |
+| System | V5 Moon Reversal + 四灯 4H/1H | 双系统并行 |
+| Positions | ≤2 同时，单笔 ≤50% | 7% 止损 / 8% 止盈 |
+| Assets | 20 币监控 + 精选7 | 每日自动扫描 |
+| Signal | 📡 每日 09:00 + 周一信号 | Telegram 实时推送 |
+| First trade | [RENDER +10.5%](analysis/render_live_trade_01.md) | 2026-06-13 |
 
 ---
 
