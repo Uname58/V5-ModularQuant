@@ -36,10 +36,10 @@ weeks = [parse_candle(w, 'weekly') for w in weeks_raw]
 month_map = {m['date']: m for m in months}
 
 from strategies import MoonReversalStrategy
-from observer import load_journal, record_trade, observe
+from observer import _io, record_trade, observe
 
 strat = MoonReversalStrategy()
-journal = load_journal()
+journal = _io('r')
 
 last_month = None
 new_signals = []
