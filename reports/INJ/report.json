@@ -1,0 +1,432 @@
+{
+  "metrics": {
+    "trades": 20,
+    "wins": 16,
+    "losses": 4,
+    "years": 4.0,
+    "total_return_pct": 110.46,
+    "cagr_pct": 20.45,
+    "win_rate_pct": 80.0,
+    "avg_win_pct": 10.53,
+    "avg_loss_pct": 15.98,
+    "win_loss_ratio": 0.66,
+    "sharpe_ratio": 1.61,
+    "sortino_ratio": 2.95,
+    "max_drawdown_pct": -36.96,
+    "max_dd_duration_periods": 11,
+    "calmar_ratio": 0.55,
+    "profit_factor": 2.64,
+    "expectancy_pct": 11.62,
+    "gross_profit_pct": 168.44,
+    "gross_loss_pct": 63.9,
+    "volatility_annualized_pct": 270.3
+  },
+  "config": {
+    "trailing_activation_pct": 5.0,
+    "trailing_distance_pct": 4.0,
+    "confirmation_weeks": 2,
+    "kelly_fraction": 0.5
+  },
+  "trades": [
+    {
+      "action": "BUY",
+      "date": "2023-01-02",
+      "price": 1.415,
+      "executed_price": 1.4178300000000001,
+      "units": 2818.3914855800763,
+      "fee": 4.0,
+      "capital_deployed": 4000.0,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2023-01-09",
+      "price": 1.67712,
+      "executed_price": 1.67376576,
+      "fee": 4.717327166839466,
+      "gross_pnl_pct": 18.05,
+      "net_pnl_pct": 17.93,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(2\u21922)"
+    },
+    {
+      "action": "BUY",
+      "date": "2023-06-12",
+      "price": 5.977,
+      "executed_price": 5.9889540000000006,
+      "units": 714.7757174179634,
+      "fee": 4.285043935869051,
+      "capital_deployed": 4285.043935869051,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2023-06-19",
+      "price": 7.175999999999999,
+      "executed_price": 7.161648,
+      "fee": 5.118972087094923,
+      "gross_pnl_pct": 19.58,
+      "net_pnl_pct": 19.46,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(7\u21927)"
+    },
+    {
+      "action": "BUY",
+      "date": "2023-08-14",
+      "price": 7.727,
+      "executed_price": 7.742454,
+      "units": 595.6704476277207,
+      "fee": 4.616567607524561,
+      "capital_deployed": 4616.567607524561,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2023-08-28",
+      "price": 6.814,
+      "executed_price": 6.800372,
+      "fee": 4.050780633275019,
+      "gross_pnl_pct": -12.17,
+      "net_pnl_pct": -12.26,
+      "reason": "\u8fde\u7eed2\u7ea2\u5468"
+    },
+    {
+      "action": "BUY",
+      "date": "2023-09-11",
+      "price": 7.028,
+      "executed_price": 7.042056,
+      "units": 622.5800921017758,
+      "fee": 4.388632505571434,
+      "capital_deployed": 4388.632505571434,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2023-09-18",
+      "price": 7.2816,
+      "executed_price": 7.2670368,
+      "fee": 4.524312440250994,
+      "gross_pnl_pct": 3.19,
+      "net_pnl_pct": 3.09,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(8\u21927)"
+    },
+    {
+      "action": "BUY",
+      "date": "2024-02-05",
+      "price": 35.16,
+      "executed_price": 35.23032,
+      "units": 125.9328231964027,
+      "fee": 4.441094754467157,
+      "capital_deployed": 4441.094754467157,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2024-02-12",
+      "price": 38.1216,
+      "executed_price": 38.0453568,
+      "fee": 4.7911591913384575,
+      "gross_pnl_pct": 7.99,
+      "net_pnl_pct": 7.88,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(40\u219238)"
+    },
+    {
+      "action": "BUY",
+      "date": "2024-04-15",
+      "price": 28.27,
+      "executed_price": 28.32654,
+      "units": 161.49606910952073,
+      "fee": 4.579204065539142,
+      "capital_deployed": 4579.204065539142,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2024-04-29",
+      "price": 24.23,
+      "executed_price": 24.181540000000002,
+      "fee": 3.9052236550146406,
+      "gross_pnl_pct": -14.63,
+      "net_pnl_pct": -14.72,
+      "reason": "\u8fde\u7eed2\u7ea2\u5468"
+    },
+    {
+      "action": "BUY",
+      "date": "2024-05-13",
+      "price": 24.15,
+      "executed_price": 24.1983,
+      "units": 177.85306249015298,
+      "fee": 4.308049811867336,
+      "capital_deployed": 4308.049811867336,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2024-05-20",
+      "price": 27.8016,
+      "executed_price": 27.7459968,
+      "fee": 4.934710502721985,
+      "gross_pnl_pct": 14.66,
+      "net_pnl_pct": 14.55,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(29\u219228)"
+    },
+    {
+      "action": "BUY",
+      "date": "2024-07-08",
+      "price": 21.64,
+      "executed_price": 21.68328,
+      "units": 209.9397998736399,
+      "fee": 4.556740204008107,
+      "capital_deployed": 4556.740204008107,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2024-07-15",
+      "price": 26.985599999999998,
+      "executed_price": 26.9316288,
+      "fee": 5.654020760543157,
+      "gross_pnl_pct": 24.2,
+      "net_pnl_pct": 24.08,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(28\u219227)"
+    },
+    {
+      "action": "BUY",
+      "date": "2024-08-05",
+      "price": 17.66,
+      "executed_price": 17.69532,
+      "units": 281.90490070253566,
+      "fee": 4.99339081831791,
+      "capital_deployed": 4993.39081831791,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2024-08-12",
+      "price": 19.1328,
+      "executed_price": 19.0945344,
+      "fee": 5.382842823993152,
+      "gross_pnl_pct": 7.91,
+      "net_pnl_pct": 7.8,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(20\u219219)"
+    },
+    {
+      "action": "BUY",
+      "date": "2024-09-09",
+      "price": 18.66,
+      "executed_price": 18.69732,
+      "units": 275.00580109742737,
+      "fee": 5.147018483458409,
+      "capital_deployed": 5147.01848345841,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2024-09-16",
+      "price": 21.043200000000002,
+      "executed_price": 21.001113600000004,
+      "fee": 5.775428069506078,
+      "gross_pnl_pct": 12.32,
+      "net_pnl_pct": 12.21,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(22\u219221)"
+    },
+    {
+      "action": "BUY",
+      "date": "2024-11-04",
+      "price": 25.75,
+      "executed_price": 25.8015,
+      "units": 208.9287860978247,
+      "fee": 5.396072146649675,
+      "capital_deployed": 5396.072146649674,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2024-11-11",
+      "price": 26.112,
+      "executed_price": 26.059776,
+      "fee": 5.444637365661226,
+      "gross_pnl_pct": 1.0,
+      "net_pnl_pct": 0.9,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(27\u219226)"
+    },
+    {
+      "action": "BUY",
+      "date": "2025-03-10",
+      "price": 9.59,
+      "executed_price": 9.60918,
+      "units": 562.7854883485087,
+      "fee": 5.413320379308031,
+      "capital_deployed": 5413.320379308031,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2025-03-17",
+      "price": 9.936,
+      "executed_price": 9.916128,
+      "fee": 5.580652939006321,
+      "gross_pnl_pct": 3.19,
+      "net_pnl_pct": 3.09,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(10\u219210)"
+    },
+    {
+      "action": "BUY",
+      "date": "2025-04-07",
+      "price": 8.0,
+      "executed_price": 8.016,
+      "units": 682.7024851384397,
+      "fee": 5.478021142011745,
+      "capital_deployed": 5478.021142011745,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2025-04-14",
+      "price": 8.275199999999998,
+      "executed_price": 8.258649599999998,
+      "fee": 5.6382006058075795,
+      "gross_pnl_pct": 3.03,
+      "net_pnl_pct": 2.92,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(9\u21928)"
+    },
+    {
+      "action": "BUY",
+      "date": "2025-07-07",
+      "price": 12.41,
+      "executed_price": 12.43482,
+      "units": 445.0645694622413,
+      "fee": 5.539837647287755,
+      "capital_deployed": 5539.837647287755,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2025-07-14",
+      "price": 14.6976,
+      "executed_price": 14.6682048,
+      "fee": 6.528298254095981,
+      "gross_pnl_pct": 17.96,
+      "net_pnl_pct": 17.84,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(15\u219215)"
+    },
+    {
+      "action": "BUY",
+      "date": "2025-09-01",
+      "price": 13.03,
+      "executed_price": 13.056059999999999,
+      "units": 453.9407723416328,
+      "fee": 5.932610570709407,
+      "capital_deployed": 5932.6105707094075,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2025-09-08",
+      "price": 14.2848,
+      "executed_price": 14.2562304,
+      "fee": 6.471484238456265,
+      "gross_pnl_pct": 9.19,
+      "net_pnl_pct": 9.08,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(15\u219214)"
+    },
+    {
+      "action": "BUY",
+      "date": "2025-10-20",
+      "price": 9.02,
+      "executed_price": 9.038039999999999,
+      "units": 679.287309269339,
+      "fee": 6.145571444112768,
+      "capital_deployed": 6145.571444112768,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2025-11-03",
+      "price": 7.6,
+      "executed_price": 7.5847999999999995,
+      "fee": 5.152258383346083,
+      "gross_pnl_pct": -16.08,
+      "net_pnl_pct": -16.16,
+      "reason": "\u8fde\u7eed2\u7ea2\u5468"
+    },
+    {
+      "action": "BUY",
+      "date": "2025-12-22",
+      "price": 4.759,
+      "executed_price": 4.768518,
+      "units": 1203.8203758770132,
+      "fee": 5.746185316452757,
+      "capital_deployed": 5746.1853164527565,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2025-12-29",
+      "price": 5.02656,
+      "executed_price": 5.01650688,
+      "fee": 6.038973197871223,
+      "gross_pnl_pct": 5.2,
+      "net_pnl_pct": 5.1,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(5\u21925)"
+    },
+    {
+      "action": "BUY",
+      "date": "2026-01-05",
+      "price": 5.185,
+      "executed_price": 5.19537,
+      "units": 1126.969589242201,
+      "fee": 5.860884879740995,
+      "capital_deployed": 5860.884879740995,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2026-01-12",
+      "price": 5.565119999999999,
+      "executed_price": 5.553989759999999,
+      "fee": 6.25917755848259,
+      "gross_pnl_pct": 6.9,
+      "net_pnl_pct": 6.8,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(6\u21926)"
+    },
+    {
+      "action": "BUY",
+      "date": "2026-02-16",
+      "price": 3.511,
+      "executed_price": 3.518022,
+      "units": 1708.8240442879621,
+      "fee": 6.01769828021424,
+      "capital_deployed": 6017.698280214239,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2026-03-02",
+      "price": 2.796,
+      "executed_price": 2.7904079999999998,
+      "fee": 4.768316283773483,
+      "gross_pnl_pct": -20.68,
+      "net_pnl_pct": -20.76,
+      "reason": "\u8fde\u7eed2\u7ea2\u5468"
+    },
+    {
+      "action": "BUY",
+      "date": "2026-04-06",
+      "price": 2.891,
+      "executed_price": 2.896782,
+      "units": 1902.290927301158,
+      "fee": 5.516038155124427,
+      "capital_deployed": 5516.038155124427,
+      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
+    },
+    {
+      "action": "SELL",
+      "date": "2026-04-13",
+      "price": 3.3619199999999996,
+      "executed_price": 3.3551961599999998,
+      "fee": 6.382559214483684,
+      "gross_pnl_pct": 15.82,
+      "net_pnl_pct": 15.71,
+      "reason": "\u8ffd\u8e2a\u6b62\u635f(4\u21923)"
+    }
+  ]
+}

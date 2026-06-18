@@ -28,7 +28,7 @@ def load_journal():
     if os.path.exists(JOURNAL_PATH):
         with open(JOURNAL_PATH) as f:
             return json.load(f)
-    return {'trades': [], 'observations': [], 'status': 'active'}
+    return {'trades': [], 'observer': [], 'status': 'active'}
 
 def save_journal(j):
     with open(JOURNAL_PATH, 'w') as f:
@@ -158,7 +158,7 @@ def observe(journal) -> str:
         lines.append(f"  ✅ 无异常，策略运行正常")
     
     # Save observation
-    journal['observations'].append({
+    journal['observer'].append({
         'date': datetime.datetime.now().isoformat(),
         'analysis': analysis,
     })

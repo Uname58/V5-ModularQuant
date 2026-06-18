@@ -4,22 +4,22 @@
     "wins": 13,
     "losses": 2,
     "years": 4.0,
-    "total_return_pct": 21.58,
-    "cagr_pct": 5.01,
+    "total_return_pct": 72.53,
+    "cagr_pct": 14.61,
     "win_rate_pct": 86.7,
     "avg_win_pct": 6.05,
     "avg_loss_pct": 12.81,
     "win_loss_ratio": 0.47,
-    "sharpe_ratio": 1.34,
-    "sortino_ratio": 2.37,
+    "sharpe_ratio": 1.58,
+    "sortino_ratio": 2.84,
     "max_drawdown_pct": -33.49,
     "max_dd_duration_periods": 9,
-    "calmar_ratio": 0.15,
+    "calmar_ratio": 0.44,
     "profit_factor": 3.07,
     "expectancy_pct": 6.95,
     "gross_profit_pct": 78.68,
     "gross_loss_pct": 25.63,
-    "volatility_annualized_pct": 262.4
+    "volatility_annualized_pct": 262.3
   },
   "config": {
     "trailing_activation_pct": 5.0,
@@ -327,16 +327,6 @@
       "gross_pnl_pct": 7.13,
       "net_pnl_pct": 7.02,
       "reason": "\u8ffd\u8e2a\u6b62\u635f(73914\u219270957)"
-    },
-    {
-      "action": "BUY",
-      "date": "2026-06-08",
-      "price": 63626.43,
-      "executed_price": 63753.68286,
-      "units": 0.07629396167196546,
-      "fee": 4.868889926493976,
-      "capital_deployed": 4868.8899264939755,
-      "reason": "\u718a\u6708\u540e\u9996\u7eff\u5468 | Kelly\u4ed3\u4f4d50%"
     }
   ]
 }
