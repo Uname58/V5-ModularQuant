@@ -251,6 +251,7 @@ def main():
     # ── 1. Check position slots ──
     slots_used = 0
     positions = []
+    held_assets = set()  # track which coins we already hold
     try:
         exchange.load_markets()
         balance = exchange.fetch_balance()
@@ -262,6 +263,7 @@ def main():
                     if value > 5:
                         slots_used += 1
                         positions.append(f"{asset} ({info:.4f} ≈ ${value:.0f})")
+                        held_assets.add(asset)  # mark as held
                 except:
                     pass
     except Exception as e:
@@ -284,6 +286,10 @@ def main():
     candidates = []
 
     for sym in symbols:
+        # Skip coins we already hold — don't double-dip
+        base = sym.replace('/USDT', '')
+        if base in held_assets:
+            continue
         try:
             ohlcv = exchange.fetch_ohlcv(sym, TIMEFRAME, limit=CANDLE_LIMIT)
             if len(ohlcv) < MA_LONG + RSI_PERIOD:
