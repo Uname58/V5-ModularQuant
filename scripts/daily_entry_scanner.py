@@ -453,19 +453,23 @@ def main():
         return 1
 
     # ── OCO: TP limit sell + SL stop-limit sell ──
+    # ⚠️ ccxt 不支持 'OCO' order type — 必须用 private_post_order_oco
     try:
-        # Round prices to tick size
         tp_price_r = exchange.price_to_precision(sym, tp_price)
         sl_price_r = exchange.price_to_precision(sym, sl_price)
-        sl_trigger = exchange.price_to_precision(sym, sl_price * 0.995)  # trigger slightly below stop
-        sell_amount = exchange.amount_to_precision(sym, filled_qty)
+        sl_trigger = exchange.price_to_precision(sym, sl_price * 0.995)
+        sell_qty = exchange.amount_to_precision(sym, filled_qty)
 
-        oco = exchange.create_order(
-            sym, 'OCO', 'sell', sell_amount, tp_price_r,
-            {'stopLossPrice': sl_trigger, 'stopLimitPrice': sl_price_r,
-             'stopLimitTimeInForce': 'GTC'}
-        )
-        print(f"   OCO已设: TP ${tp_price_r} | SL ${sl_price_r}")
+        oco = exchange.private_post_order_oco({
+            'symbol': sym.replace('/', ''),
+            'side': 'SELL',
+            'quantity': str(sell_qty),
+            'price': str(tp_price_r),
+            'stopPrice': str(sl_trigger),
+            'stopLimitPrice': str(sl_price_r),
+            'stopLimitTimeInForce': 'GTC',
+        })
+        print(f"   OCO已设: TP ${tp_price_r} | SL ${sl_price_r} | status={oco.get('listOrderStatus','?')}")
     except Exception as e:
         print(f"   ⚠️ OCO失败: {e} | TP=${tp_price:.6f} SL=${sl_price:.6f} (请手动设)")
 
