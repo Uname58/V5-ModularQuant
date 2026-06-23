@@ -1,51 +1,49 @@
 # 🧪 V5 Modular Quant Lab
 
-> *"Don't build a strategy. Build a strategy engine."*
-> *「不造策略，造策略引擎。」*
+> *"Strategy is a plugin. The framework is the edge."*
+> *「策略是插件。风控层才是本体。」*
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue?logo=python)](https://python.org)
-[![Status](https://img.shields.io/badge/status-live%20trading-brightgreen)]()
+[![Status](https://img.shields.io/badge/status-paper%20trading-yellow)]()
 [![License](https://img.shields.io/badge/license-MIT-green)]()
-[![Strategies](https://img.shields.io/badge/strategies-pluggable-purple)]()
 
 ---
 
-## 💡 核心思想
-
-**策略是插件，框架是本体。**
+## 💡 核心哲学
 
 ```
-                    ┌──────────────────┐
-                    │   V5 Quant Lab   │
-                    │  (engine + data) │
-                    └────────┬─────────┘
-                             │
-          ┌──────────────────┼──────────────────┐
-          │                  │                  │
-     ┌────▼────┐      ┌─────▼──────┐      ┌────▼────┐
-     │ 四灯 4H │      │ Moon Rev.  │      │ 你的策略 │
-     │ 42.9%WR │      │  月线反转   │      │  ...     │
-     │ +21.2%  │      │  75% WR    │      │          │
-     └─────────┘      └────────────┘      └─────────┘
+信号层告诉你何时入场。
+风控层决定你能不能留下来等到它兑现。
 ```
 
-任意策略接入同一套 pipeline：
-- 数据拉取 → 信号生成 → 回测 → 参数扫描 → 纸交 → **实盘**
+Alpha 会衰减，参数会过拟合，但风险塑造是永恒的。
 
 ---
 
-## 📊 已回测策略对比 (2024-08 → 2026-06)
+## 🎯 当前主力：RSI 流动性反弹模块
 
-| | 四灯 (4H/1H) | Moon Reversal (月/周) |
-|------|:--:|:--:|
-| 交易次数 | 42 | 15 |
-| 胜率 | 42.9% | 53.3% |
-| 累计收益 | **+21.2%** | -18.4% |
-| vs 买入持有 | **+10.6%** | -26.1% |
-| 平均持仓 | 31 小时 | ~2 周 |
-| 敞口 | 8.3% | 15.6% |
+| 指标 | 值 |
+|------|-----|
+| 入场条件 | RSI(14) < 20 + 价格低于 MA99 8%+ + 24h 跌 5%+ |
+| TP / SL | +1.5% / -10% |
+| 胜率 | **93%** (2022-2026, 269 信号) |
+| 年化 | 年年正收益 (2022 +55%, 2023 +20%, 2024 +28%, 2025 +13%, 2026 +3%) |
+| MaxDD (风控后) | 16.5% |
+| Sharpe | 1.24 |
+| 中位持仓 | 2 小时 |
 
-Moon Reversal 8 年回测见 [analysis/](analysis/) — 它在更长周期上表现更强（8 年 75% WR, +67.2%），但 2024-2026 横盘市场遇冷。
+### 风控层
+
+- **冷却系统**：亏损后 6h→24h→72h 递进冷却（砍掉 46% 信号 = MaxDD 从 43% → 16.5%）
+- **非线性 sizing**：RSI < 15 → 1.5x, RSI < 18 → 1.2x, ATR > 5% → 0.7x
+- **风险预算**：日风控 3%, 周风控 7%
+
+### 当前阶段：Phase 1 纸交
+
+- **14 币**：BTC ETH SOL BNB XRP DOGE SUI NEAR ADA AVAX LINK ENA AAVE INJ
+- **每 30 分钟扫描**，静默运行，有信号才推送
+- **追踪指标**：Capture Ratio, 执行滑点, 信号密度, 冷却触发率
+- **目标**：证明回测 ≈ 实盘（30 天观察）
 
 ---
 
@@ -54,93 +52,74 @@ Moon Reversal 8 年回测见 [analysis/](analysis/) — 它在更长周期上表
 ```
 V5-ModularQuant/
 │
-├── config.py                  ⚙️  Centralized config (all strategies)
-├── cli_runner.py              🖥️  Unified CLI
+├── config.py                  ⚙️  集中配置
+├── cli_runner.py              🖥️  统一 CLI
 │
-├── engine/                    ⚡ Execution layer
-│   ├── signal_engine.py          Signal generation (symbol-parametric)
+├── engine/                    ⚡ 执行层
 │   ├── backtest_engine.py        复利权益曲线 + 滑点/手续费
-│   └── execution_simulator.py    Realistic cost modeling
+│   └── execution_simulator.py   真实成本建模
 │
-├── strategies/                🧩 Pluggable strategies
-│   ├── __init__.py               MoonReversalStrategy (月线反转)
-│   └── (四灯即将模块化到这里)
+├── strategies/                🧩 策略插件
+│   └── (RSI 反弹 / 四灯 / Moon Reversal)
 │
-├── analytics/                 📐 Analysis layer
-│   ├── metrics.py                14 metrics (Sharpe/Sortino/Calmar/...)
-│   ├── regime.py                 牛/熊/震荡/恐慌 分类
-│   └── benchmarks.py             BTC/ETH buy & hold comparison
+├── analytics/                 📐 分析层
+│   ├── metrics.py                14 指标
+│   ├── regime.py                 市场状态分类
+│   └── benchmarks.py             基准对比
 │
-├── validation/                🛡️  Robustness
-│   ├── walk_forward.py           Walk-forward analysis
-│   ├── monte_carlo.py            10k bootstrap
-│   └── sensitivity.py            Parameter grid search
+├── validation/                🛡️ 验证
+│   └── sensitivity.py            参数网格搜索
 │
-├── reporting/
-│   ├── reporter_v2.py         📊  交易级4图 (multi-coin)
-│   └── reporter.py               连续权益曲线
+├── paper_trading/             📋 纸交
+│   └── paper_trade_rsi.py        RSI Phase 1 (14 币, cron)
 │
-├── paper_trading/             📋  Live tracking
-│   ├── select5.py                RA-ranked position sizing
-│   ├── moon_scan.py              20-coin signal scan
-│   └── weekly_check.py           Weekly cron
+├── risk/                      🚨 风控
+│   └── risk_controller.py        冷却 + 风险预算
 │
-├── risk/                      🚨  Risk control
-│   └── risk_controller.py        一票否决 + 仓位门
+├── monitoring/                📡 监控
+│   ├── observer.py               绩效追踪
+│   └── news_monitor.py           新闻过滤
 │
-├── monitoring/                📡  Monitoring
-│   ├── observer.py               Performance tracking
-│   └── news_monitor.py           S/A/B/C news filter
-│
-├── analysis/                  📝  Case studies & records
-└── reports/                   📁  Backtest charts
+└── analysis/                  📝 研究记录
 ```
 
 ---
 
-## 🎯 当前实盘
+## 📊 策略墓地
 
-| 项目 | 状态 |
-|------|------|
-| 账户 | $259 USDT（自有资金） |
-| 主策略 | 🟢 四灯 4H/1H |
-| 副策略 | ⏸️ Moon Reversal（等信号） |
-| 持仓 | PARTI/USDT |
-| 已平仓 | [RENDER +10.5%](analysis/render_live_trade_01.md) |
-| 风控 | 单笔 ≤50%, 止损 -7%, 止盈 +8% |
-| 信号 | 📡 每日 09:00 HKT 自动扫描 |
+被验证、被否决、被搁置——它们不是失败，是通往答案的路。
+
+| 策略 | 结果 | 原因 |
+|------|------|------|
+| 四灯 4H/1H | ❌ | 恐慌市场 WR 25%, 熊市不适用 |
+| Moon Reversal 月线 | ⏸️ | 长周期择时, 暂时搁置 |
+| Bar Confirm 变体 | ❌ | 延迟入场使结果更差 |
+| Regime Switching | ❌ | 120 次切换过拟合, OOS 全负 |
+
+---
+
+## 📈 审计结论 (2026-06-23)
+
+| 检查项 | 结果 |
+|------|:--:|
+| 未来函数 | ✅ 无 (RSI 仅用已收盘数据) |
+| 冷却真实性 | ✅ (砍 46% 信号) |
+| 费率抗性 | ✅ (0.25% 费率下 Sharpe > 1.0) |
+| 延迟抗性 | ⚠️ 敏感 (需实盘测量) |
+| 最坏情况 | ✅ 仍正收益 (+27.9%) |
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-# 四灯全市场扫描 (617 coin pairs)
-python3.12 scripts/crypto_screener.py
+# 纸交扫描
+python3 paper_trading/paper_trade_rsi.py
 
-# Moon Reversal 信号
-python3 cli_runner.py signal
-
-# 回测 + 验证
+# 回测
 python3 cli_runner.py backtest
-python3 cli_runner.py validate
-
-# 多币图表
-python3 reporter_v2.py
 ```
 
 ---
 
-## 🔔 自动化
-
-| 时间 | 任务 | 策略 |
-|------|------|------|
-| 每日 09:00 | 四灯入场扫描 | 4H/1H |
-| 周一 09:00 | Moon Reversal 周检 | 月/周 |
-| 周一 09:00 | 精选7 信号 + 仓位 | RA 排名 |
-| 每小时 | 新闻风控扫描 | S/A/B/C |
-| 每分钟 | 高波动追踪 | >±2% |
-
----
-
-*Built by [Uname58](https://github.com/Uname58) — 19yo, HK. Strategy is a plugin, not an identity.*
+*Built by [Uname58](https://github.com/Uname58) — 19yo, HK. The strategy changes. The framework stays.*
